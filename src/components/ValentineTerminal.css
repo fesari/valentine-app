@@ -22,16 +22,19 @@
 }
 
 .valentine-terminal {
-  width: 800px;
-  height: 500px;
-  padding: 30px;
+  width: min(92vw, 800px);
+  max-width: 92vw;
+  height: min(72vh, 500px);
+  max-height: 92vh;
+  padding: clamp(12px, 2.5vw, 30px);
+  box-sizing: border-box;
   font-family: 'Courier New', monospace;
   background: #f5f1eb;
   border-radius: 8px;
   border: 3px solid #d4c5b0;
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
   color: #000;
-  overflow-y: auto;
+  overflow: auto;
   display: flex;
   flex-direction: column;
 }
@@ -43,7 +46,8 @@
   max-width: 100%;
   margin: 0;
   padding: 0;
-  font-size: 18px;
+  font-size: clamp(13px, 2.4vw, 18px);
+  line-height: 1.35;
 }
 
 .valentine-terminal code {
@@ -53,10 +57,11 @@
 
 .ascii-heart {
   color: #000 !important;
-  font-size: 18px !important;
-  line-height: 1.2;
+  font-size: clamp(12px, 2.5vw, 18px) !important;
+  line-height: 1.15;
   margin: 0 !important;
   padding: 0 !important;
+  white-space: pre-wrap;
 }
 
 .yay-text {
@@ -93,9 +98,9 @@
 }
 
 .terminal-button {
-  padding: 10px 24px;
+  padding: clamp(8px, 1.8vw, 10px) clamp(12px, 4vw, 24px);
   font-family: 'Zain', monospace;
-  font-size: 16px;
+  font-size: clamp(13px, 2.2vw, 16px);
   font-weight: 500;
   border: 2px solid;
   background: transparent;
@@ -127,9 +132,21 @@
 
 .ascii-heart {
   font-family: monospace;
-  line-height: 1.2;
+  line-height: 1.15;
   margin: 10px 0;
   animation: pulse 1.5s ease-in-out infinite;
+}
+
+/* Extra small landscape / very short screens: reduce text further */
+@media (max-height: 420px) {
+  .valentine-terminal pre,
+  .ascii-heart,
+  .terminal-button {
+    font-size: clamp(11px, 2.8vw, 14px) !important;
+  }
+  .valentine-terminal {
+    padding: 10px;
+  }
 }
 
 @keyframes pulse {
